@@ -4,13 +4,11 @@
   "name": "Quora Butler",
   "description": "Lets the butler put in replies",
   "version": "1.0",
-  "background": {"page": "background.html"},
-
   "browser_action": {
     "name": "Quora Butler",
-    "default_icon": "images/icon.jpg",
+    "default_icon": "images/butler_small.jpg",
     "default_popup": "popup.html",
-    "default_title": "Configure"
+    "default_title": "Configure the Butler"
   },
   "content_scripts": [ {
     "js": [ "jquery-2.2.0.min.js", "background.js" ],
@@ -19,7 +17,8 @@
   } ],
   "permissions": [
     "activeTab",
-    "https://ajax.googleapis.com/"
+    "https://ajax.googleapis.com/",
+    "tabs"
   ],
   "web_accessible_resources": [
     "images/*"

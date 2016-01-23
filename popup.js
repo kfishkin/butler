@@ -39,12 +39,35 @@ function renderStatus(where, msg) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  getCurrentTabUrl(function(url) {
-    // Put the image URL in Google search.
-    if (/profile/.test(url)) {
-      renderStatus('status', 'You are on a profile page');
-    } else {
-      renderStatus('status', 'Not on a profile page');
-    }
+  var button = document.getElementById('invoke_butler');
+  button.addEventListener('click', function() {
+    console.log('you clicked the button');
+    var txt = document.getElementById('reply_text').value;
+    console.log('txt = ' + txt);
+    /*
+     * There are many ways to talk to the content script
+     * documented on the web, most of which don't work.
+     * The one that works I found at
+     * https://developer.chrome.com/extensions/tabs#method-sendMessage,
+     * as the doc says that you have to use tabs.sendMessage,
+     * not runtime.sendMessage, to talk to an extension
+     */
+    chrome.tabs.query( { active: true}, function (tabs) {
+      for (var i = 0; i < tabs.length; i++) {
+        var tab = tabs[i];
+        console.log('tab.id = ' + tab.id);
+        chrome.tabs.sendMessage(tab.id,
+          { type: "Butler Popup", replyText : txt},
+          {},
+          function(response) {
+            console.log('sendMessage, response = ' + response);
+            if (!response) {
+              console.log('runtime err = ' + chrome.runtime.lastError);
+              console.log('runtime err.msg = '
+                + chrome.runtime.lastError.message);
+            }
+          });
+      }
+    });
   });
 });

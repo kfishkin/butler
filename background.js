@@ -3,32 +3,29 @@
  */
 //alert('hello from background.js, location = ' + window.location);
 //alert('imgUrl = ' + imgURL);
-/*
-var views = chrome.extension.getViews({type: "popup"});
-for (var i = 0; i < views.length; i++) {
-  var elt = views[i].document.getElementById('reply_text');
-  alert('i = ' + i + ', elt = ' + elt);
-}
-*/
 
-// put the butler decoration button after the Quora logo
-var decorateButton = $('<button>')
-  .addClass('butler_button')
-  .text('Decorate')
-  .attr('title', 'put the butler on comments');
-// put it after the last 'expanded span' at top -
-// this is things like 'Answer', 'Notifications', etc.
-$('span.expanded').last().append(decorateButton);
 
-decorateButton.click(function(evt) {
-  var comments = $("div.threaded_comment");
-  var timestamps = comments.find("span.timestamp[butler!='butler']");
-  timestamps.after(btn);
-  timestamps.attr('butler','butler');
-  evt.stopPropagation();
+var replyText = 'Thanks for the input. Did you want this to be an answer, instead of a comment?';
+
+// listening for an event / one-time requests
+// coming from the popup
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  console.log('got request of ' + request + ', type = ' + request.type);
+  if ('Butler Popup' == request.type) {
+    console.log('got popup msg, txt = ' + request.replyText);
+    replyText = request.replyText;
+    var comments = $("div.threaded_comment");
+    var timestamps = comments.find("span.timestamp[butler!='butler']");
+    timestamps.after(btn);
+    timestamps.attr('butler','butler');
+  }
+  return true;
 });
 
-//var btn = $('<button>').addClass('butler_button').text('Butler').attr('title', 'do it');
+// according to https://developer.chrome.com/extensions/content_scripts,
+// a content script can't use chrome.extension.getViews :(
+// so don't know how background can read popup html... TODO
+
 // find the URL of the butler button.
 // the advantage of doing it this way is that you don't
 // need to know the extension id.
@@ -60,12 +57,24 @@ btn.click(function(evt) {
         return;
       }
       // TODO: get this from the popup box.
-      contentBox.text('Thanks for the input. Did you want this to be an answer, instead of a comment?');
+      contentBox.text(replyText);
       var cancelLink = cmt.find('div.reply_submit_button_wrapper').children('span').children('a');
       var replyLink = cmt.find('div.reply_submit_button_wrapper').children('a.submit_button');
       console.log('replyLink = ' + replyLink.html());
       console.log('cancelLink = ' + cancelLink.html());
       //replyLink.trigger('click');
+      // see if 'chrome.tabs.executeScript() will do it,
+      // maybe otherwise sandboxing is screwing us...
+      /*
+      var eltId = cancelLink.attr('id');
+      var script = 'document.getElementById(\''
+        + eltId + '\').click()';
+      console.log('script = [' + script + ']');
+      chrome.tabs.executeScript({
+        code: script
+      });
+      */
+
       window.setTimeout(function() {
         console.log('clicking cancel link, id = ' + cancelLink.attr('id'));
         cancelLink.focus();

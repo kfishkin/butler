@@ -8,19 +8,22 @@ To use:
 2) check the 'developer mode' toolbox
 3) click 'Load unpacked extension...'
 4) Select this directory.
+
 Make sure the extension is enabled.
-Now, whenever you're in Quora, you should see a 'Decorate'
-button at the top right of your screen. To use it,
+Now...
+
 1) go to some random quora page
 2) have the comments you are interested in available
-3) click the 'Decorate' button
+3) Click the icon for the popup in the chrome toolbar.
+4) Set the reply text as you wish.
+5) Click the 'Click to decorate' button
+
 You should now see a little 'butler' icon to the right
 of each comment. Click it, and it will stuff in the
-"this should be an answer" text, and hit "Reply".
+reply text from step (4).
 
 For now, this is buggy - you have to hit the 'Reply' button yourself.
 
-Also, the text to stuff is wired into the JS - you should be able
-to set this by clicking on the 'butler' icon in the Chrome toolbar,
-and typing what you want into that text box.
+I have a feeling that this may be a sandbox 'feature' of
+the chrome extension :(.
 
