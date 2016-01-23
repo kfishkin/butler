@@ -1,0 +1,36 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+  <head>
+    <title>Quora Butler</title>
+    <style>
+      body {
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-size: 100%;
+        background-color: #DDD;
+        width:300px;
+      }
+      #status {
+        /* avoid an excessively wide status text */
+        white-space: pre;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 400px;
+      }
+    </style>
+
+    <script src="popup.js"></script>
+  </head>
+  <body>
+    The message for the reply:
+    <br/>
+    <input type="text" id="reply_text"
+      value="Thanks for the input, but this should be an answer, not a comment.">
+    </input>
+  </body>
+</html>
+
