@@ -18,6 +18,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     var timestamps = comments.find("span.timestamp[butler!='butler']");
     timestamps.after(btn);
     timestamps.attr('butler','butler');
+    $('img.butler_button').first().focus();
   }
   return true;
 });
@@ -32,10 +33,10 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 // Thank you Stack Overflow.
 var imgURL = chrome.extension.getURL('images/butler_small.jpg');
 var btn = $('<img>')
-  .addClass('alfred')
+  .addClass('butler_button')
   .attr('src',imgURL)
   .text('Butler')
-  .attr('title', 'do it');
+  .attr('title', replyText);
 
 btn.click(function(evt) {
   var me = $(evt.target);
@@ -56,30 +57,16 @@ btn.click(function(evt) {
         console.log('content box never showed, sorry');
         return;
       }
-      // TODO: get this from the popup box.
       contentBox.text(replyText);
       var cancelLink = cmt.find('div.reply_submit_button_wrapper').children('span').children('a');
       var replyLink = cmt.find('div.reply_submit_button_wrapper').children('a.submit_button');
-      console.log('replyLink = ' + replyLink.html());
-      console.log('cancelLink = ' + cancelLink.html());
-      //replyLink.trigger('click');
-      // see if 'chrome.tabs.executeScript() will do it,
-      // maybe otherwise sandboxing is screwing us...
-      /*
-      var eltId = cancelLink.attr('id');
-      var script = 'document.getElementById(\''
-        + eltId + '\').click()';
-      console.log('script = [' + script + ']');
-      chrome.tabs.executeScript({
-        code: script
-      });
-      */
-
-      window.setTimeout(function() {
-        console.log('clicking cancel link, id = ' + cancelLink.attr('id'));
-        cancelLink.focus();
-        cancelLink.click();
-        }, 2000);
+      // thanks to Stack Overflow:
+      // http://stackoverflow.com/questions/17819344/triggering-a-click-event-from-content-script-chrome-extension:
+      // 'jQuery's click trigger function does not trigger a non-jQuery DOM click listener (jsfiddle.net/k2W6M).'
+      // so you do it by sending a raw event to the DOM element:
+      replyLink.focus();
+      replyLink.get(0).dispatchEvent(new MouseEvent("click"));
+      cmt.focus();
     } else if (numTries < MAX_TRIES) {
       numTries++;
     } else {
