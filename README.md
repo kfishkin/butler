@@ -20,10 +20,4 @@ Now...
 
 You should now see a little 'butler' icon to the right
 of each comment. Click it, and it will stuff in the
-reply text from step (4).
-
-For now, this is buggy - you have to hit the 'Reply' button yourself.
-
-I have a feeling that this may be a sandbox 'feature' of
-the chrome extension :(.
-
+reply text from step (4), and then hit the 'reply' button.
