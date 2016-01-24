@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <title>How to use the Quora Butler</title>
+  <style>
+  body {
+    background-color: #FFFFCC;
+    font-family: Sans-serif;
+  }
+  a:link, a:visited {
+    color: #B22222;
+  }
+  pre {
+    background-color: #DDD;
+  }
+  code {
+    font-weight: bold;
+    background-color: #EEE;
+    font-size: larger;
+  }
+  </style>
+  </head>
+  <body>
+    <h2>Introduction</h2>
+<p>The <i>Quora Butler</i> is a litle Chrome extension that gives you a 1-click way
+to send a reply to a comment. You can customize what that reply is, the default is
+"Thanks for the input. Did you want this to be an answer, instead of a comment?".</p>
+    <h2>Installation</h2>
+    <p>Installation is clunky right now, sorry about that. Do these steps:</p>
+    <ol>
+      <li><b>Download the files</b>. Go to <code>https://github.com/kfishkin/butler</code>,
+      and click the button that says 'Download ZIP'. Extract that zip file somewhere,
+      note that it gave you a directory called <code>butler-master</code>.</li>
+      <li><b>Install the extension</b>. In Chrome (this is Chrome only),
+      go to <code>chrome://extensions</code>. Make sure you click the box that says 'Developer mode'.
+      <br>
+      <img src="pix/developer_mode.png"/>
+      </li>
+      <li>Now click the button that says <code>Load unpacked extension...</code>. Navigate to the
+      <code>butler-master</code> directory you just made, and select it.
+      You should now see info about the butler appearing on that page:
+      <img src="pix/butler_extension_loaded.png"/>
+      <br>
+      And you should also see the butler icon appear in your chrome toolbar:
+      <br>
+      <img src="pix/butler_icon_toolbar.png"/>
+      </li>
+      </ol>
+    <h2>Use</h2>
+    <p>
+    Once the extension has been installed, using it is, well, still kinda clunky,
+    but here you go:
+    </p>
+    <ol>
+      <li><b>Navigate to some Quora page with comments that you might want to reply to</b>.
+      This could be some answer of yours with lots of comments, some notification about some comment added to an answer of yours, whatever.
+      For example, here's one that <b>Akshat Mahajan</b> did for me to help in testing this plugin,
+      you can see it at <a href='https://www.quora.com/What-are-the-most-funny-and-bizarre-road-signs-worth-slowing-down-for/answer/Ken-Fishkin'>this page</a> -
+      I've also added some other bogus comments so you can see how this work when there's
+      more than one comment on an answer:
+      <br>
+      <img src="pix/comments_before.png"/>
+      </li>
+      <li><b>Click on the butler icon in the toolbar.</b> You will see a little form
+      that looks like this:
+      <br>
+      <img src="pix/popup_dialog.png"/>
+      </li>
+      <li>Stuff in whatever text you'd like the 1-step reply to have for its reply.
+      There is a default, you don't have to do this. In this case, I'll use the default.
+      </li>
+      <li>Now, hit the 'Click to decorate' button. You will now see that little 'butler'
+      icons now appear on your Quora page, one per comment:
+      <br>
+      <img src="pix/comments_after_decoration.png"/>
+      </li>
+      <li>If you then click on one of these icons, it will 'reply' to the comment
+      that it is next to, with the text you specified in the popup.</li>
+    </ol>
+    <p>For example, suppose we click on the icon by Akshat's comment. Then you will
+    quickly see your page change to look like this:
+    <br>
+    <img src="pix/after_reply.png"/>
+    </p>
+    <p>And there you have it! Try it out, let me know what you think, also it's on
+    github so I welcome improvements.</p>
+
+
+
+
+
+
+  </body>
+</html>
