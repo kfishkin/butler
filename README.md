@@ -5,7 +5,7 @@ easily put "This is an answer, not a comment" text as a
 reply to a comment. For instructions on how to install and use,
 see 'doc/howto.html'.
 
-## Introduction<
+## Introduction
 
 The _Quora Butler_ is a litle Chrome extension that gives you a 1-click way to send a reply to a comment. You can customize what that reply is, the default is "Thanks for the input. Did you want this to be an answer, instead of a comment?".
     
@@ -33,7 +33,7 @@ Once the extension has been installed, using it is, well, still kinda clunky, bu
 
     ![Comment before](https://github.com/kfishkin/butler/blob/master/doc/pix/comments_before.png)    
 
-- ** Click on the butler icon in the toolbar.** You will see a little form that looks like this:
+- **Click on the butler icon in the toolbar.** You will see a little form that looks like this:
 
     ![Popup dialog](https://github.com/kfishkin/butler/blob/master/doc/pix/popup_dialog.png) 
 
@@ -47,6 +47,6 @@ Once the extension has been installed, using it is, well, still kinda clunky, bu
 
 For example, suppose we click on the icon by Akshat's comment. Then you will quickly see your page change to look like this:
 
-    ![After Reply](https://github.com/kfishkin/butler/blob/master/doc/pix/after_reply.png) 
+![After Reply](https://github.com/kfishkin/butler/blob/master/doc/pix/after_reply.png) 
 
 And there you have it! Try it out, let me know what you think, also it's on Github so I welcome improvements.
