@@ -16,7 +16,7 @@
   "content_scripts": [ {
     "js": [ "jquery-2.2.0.min.js", "background.js" ],
     "css": ["custom_styles.css"],
-    "matches": [ "http://www.quora.com/*", "https://www.quora.com/*"]
+    "matches": ["*://*.quora.com/*"]
   } ],
   "icons" : {
     "48" : "images/butler_48.png"
