@@ -13,7 +13,7 @@ Make sure the extension is enabled.
 Now...
 
 1) go to some random quora page
-2) have the comments you are interested in available
+2) have the comments you are interested in displayed on the page.
 3) Click the icon for the popup in the chrome toolbar.
 4) Set the reply text as you wish.
 5) Click the 'Click to decorate' button

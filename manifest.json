@@ -6,7 +6,10 @@
   "version": "1.0",
   "browser_action": {
     "name": "Quora Butler",
-    "default_icon": "images/butler_small.jpg",
+    "default_icon": {
+      "19" : "images/butler_19.png",
+      "38" : "images/butler_38.png"
+    },
     "default_popup": "popup.html",
     "default_title": "Configure the Butler"
   },
@@ -15,6 +18,9 @@
     "css": ["custom_styles.css"],
     "matches": [ "http://www.quora.com/*", "https://www.quora.com/*"]
   } ],
+  "icons" : {
+    "48" : "images/butler_48.png"
+  },
   "permissions": [
     "activeTab",
     "https://ajax.googleapis.com/",

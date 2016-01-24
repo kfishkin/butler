@@ -1,7 +1,4 @@
 img.butler_button {
   vertical-align: middle;
-}
-button.butler_button {
-  position: relative;
-  left: 10px;
+  margin-left: 5px;
 }
