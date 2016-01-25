@@ -20,25 +20,29 @@ document.addEventListener('DOMContentLoaded', function() {
      *
      * This code will send the message to the active tab,
      * which it assumes is the Quora tab.
-     * TODO: send to Quora tab(s), not the active tab.
+ 
+     * Comment by Akshat: Added a string search for Quora in the URL.
      */
-    chrome.tabs.query( { active: true}, function (tabs) {
+    chrome.tabs.query({
+      active: true
+    }, function(tabs) {
       // this is overly-general, there should never be
       // more than one...
       for (var i = 0; i < tabs.length; i++) {
-        var tab = tabs[i];
-        console.log('tab.id = ' + tab.id);
-        chrome.tabs.sendMessage(tab.id,
-          { type: "Butler Popup", replyText : txt},
-          {},
-          function(response) {
+        if (tabs[i].url.indexOf("quora.com") !== -1) { // only operates on a URL containing quora.com
+          var tab = tabs[i];
+          console.log('tab.id = ' + tab.id);
+          chrome.tabs.sendMessage(tab.id, {
+            type: "Butler Popup",
+            replyText: txt
+          }, {}, function(response) {
             console.log('sendMessage, response = ' + response);
             if (!response) {
               console.log('runtime err = ' + chrome.runtime.lastError);
-              console.log('runtime err.msg = '
-                + chrome.runtime.lastError.message);
+              console.log('runtime err.msg = ' + chrome.runtime.lastError.message);
             }
           });
+        }
       }
     });
   });

@@ -17,15 +17,15 @@ var replyText = 'Thanks for the input. Did you want this to be an answer, instea
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   console.log('got request of ' + request + ', type = ' + request.type);
   if ('Butler Popup' == request.type) {
-    console.log('got popup msg, txt = ' + request.replyText);
-    replyText = request.replyText;
-    // find all comments, add the butler button
-    // after all that don't already have it...
-    var comments = $("div.threaded_comment");
-    var timestamps = comments.find("span.timestamp[butler!='butler']");
-    timestamps.after(btn);
-    timestamps.attr('butler','butler');
-    $('img.butler_button').first().focus();
+      console.log('got popup msg, txt = ' + request.replyText);
+      replyText = request.replyText;
+      // find all comments, add the butler button
+      // after all that don't already have it...
+      var comments = $("div.threaded_comment");
+      var timestamps = comments.find("span.timestamp[butler!='butler']");
+      timestamps.after(btn);
+      timestamps.attr('butler', 'butler');
+      $('img.butler_button').first().focus();
   }
   return true;
 });
@@ -38,7 +38,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 var imgURL = chrome.extension.getURL('images/butler_small.jpg');
 var btn = $('<img>')
   .addClass('butler_button')
-  .attr('src',imgURL)
+  .attr('src', imgURL)
   .text('Butler')
   .attr('title', replyText);
 
@@ -69,11 +69,11 @@ btn.click(function(evt) {
       replyLink.focus();
       replyLink.get(0).dispatchEvent(new MouseEvent("click"));
       cmt.focus();
-    } else if (numTries < MAX_TRIES) {
-      numTries++;
-    } else {
-      console.log('content box never showed, sorry');
-      window.clearInterval(timer);
-    }
-  }, INTERVAL_IN_MS);
+      } else if (numTries < MAX_TRIES) {
+        numTries++;
+      } else {
+        alert("Your Butler comment wasn't able to be sent. Sorry!"); // force an alert here so that user isn't confused about what happened.
+        window.clearInterval(timer);
+      }
+    }, INTERVAL_IN_MS);
 });
