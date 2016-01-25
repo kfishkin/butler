@@ -14,7 +14,7 @@
     "default_title": "Configure the Butler"
   },
   "content_scripts": [ {
-    "js": [ "jquery-2.2.0.min.js", "background.js" ],
+    "js": [ "jquery-2.2.0.min.js", "content.js" ],
     "css": ["custom_styles.css"],
     "matches": ["*://*.quora.com/*"]
   } ],
@@ -22,7 +22,7 @@
     "48" : "images/butler_48.png"
   },
   "background": {
-    "scripts": ["real-background.js"],
+    "scripts": ["background.js"],
     "persistent": false
   },
   "permissions": [
