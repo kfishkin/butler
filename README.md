@@ -22,14 +22,14 @@ Installation is clunky right now, sorry about that. Do these steps:
 - Now click the button that says `Load unpacked extension...`. Navigate to the `butler-master` directory you just made, and select it. You should now see info about the butler appearing on that page:
     ![Butler extension loaded](https://github.com/kfishkin/butler/blob/master/doc/pix/butler_extension_loaded.png)
 
-- And you should also see the butler icon appear in your chrome toolbar:
-    ![Butler extension loaded](https://github.com/kfishkin/butler/blob/master/doc/pix/butler_icon_toolbar.png)
+- And you should also see the butler icon appear in your chrome toolbar, to the right of the url:
+    ![Butler extension loaded](https://github.com/kfishkin/butler/blob/master/doc/pix/butler_icon_page.png)
 
 ## Use
 
 Once the extension has been installed, using it is, well, still kinda clunky, but here you go:
 
-- **Navigate to some Quora page with comments that you might want to reply to**. This could be some answer of yours with lots of comments, some notification about some comment added to an answer of yours, whatever. You will now see a little 'butler' icon to the right of reply-able comments on the page.
+- **Navigate to some Quora page with comments that you might want to reply to**. This could be some answer of yours with lots of comments, some notification about some comment added to an answer of yours, whatever. You will now see a little 'butler' icon to the right of some of the reply-able comments on the page
 
 - **Click on the butler icon in the toolbar.** You will see a little form that looks like this:
 

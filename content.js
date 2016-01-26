@@ -60,68 +60,18 @@ btn.click(function(evt) {
 });
 
 /**
- * There are three ways a reply-able comment can come into being:
- * 1) The user goes to a new page. In that case, this code will be reloaded.
- * 2) The user is on a page with some. In that case, we can find them right
- * away.
- * 3) The user clicks to expand comments. In that case, we will monitor for
+ * Decorates the undecorated comments with the Butler button
  * the comments to arrive.
  */
-function onStartup() {
-  // CASE 2: FIND THEM RIGHT AWAY:
+function decorateComments() {
   var comments = $("div.threaded_comment");
   var timestamps = comments.find("span.timestamp[butler!='butler']");
+  btn.attr('title', replyText);
   timestamps.after(btn);
   timestamps.attr('butler', 'butler');
-
-  // CASE 3: find when they expand.
-  // One could do this via a MutationObserver, but this never seems to
-  // catch the comments as they come in. My current hypothesis is that
-  // they come in pre-attached to their ancestors, and so no event fires.
-  // So instead, watch for a click on the button that expands comments,
-  // and then poll.
-  var commentLinks = $('a.comment_link');
-  commentLinks.click(function(evt) {
-    var aNode = $(evt.target);
-    // go up to the Answer ActionBar:
-    var commonParent = aNode.parents('div.Answer').first();
-    // and find the 'threaded_comments' child of that...
-    var threadedComments = commonParent.children('div.threaded_comments');
-    // it appears that this gets triggered _before_ the apps onClick handler,
-    // as the 'hidden' class name is there in the comments when the comments
-    // _were_ hidden, not when they _are_.
-    // So we need to wait for the comments to gradually come in, and
-    // decorate them as they do. We don't know how many comments this will
-    // be, since they can be a tree, not a list. Give up when we haven't seen
-    // any new ones in some amount of time.....
-    // one 'feature' of this code is that it works whether invoked before,
-    // or after, the app brings in the comments...
-    var numTries = 0;
-    var numFruitlessTries = 0;
-    var MAX_TOTAL_TRIES = 50;
-    var MAX_FRUITLESS_TRIES = 10;
-    var INTERVAL_IN_MS = 200;
-    var timer = window.setInterval(function() {
-      var timestamps = threadedComments.find("span.timestamp[butler!='butler']");
-      if (!timestamps || timestamps.length == 0) {
-        numFruitlessTries++;
-        if (numFruitlessTries > MAX_FRUITLESS_TRIES) {
-          window.clearInterval(timer);
-        }
-      } else {
-        timestamps.after(btn);
-        timestamps.attr('butler', 'butler');
-      }
-      numTries++;
-      if (numTries > MAX_TOTAL_TRIES) {
-        window.clearInterval(timer);
-      }
-    }, INTERVAL_IN_MS);
-  });
-
 };
 
-onStartup();
+decorateComments();
 
 /**
  * listens for events coming from the popup.
@@ -133,6 +83,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
       replyText = request.replyText;
       // all existing buttons need their tooltips changed:
       $('img.butler_button').attr('title', replyText);
+      decorateComments();
   }
   return true;
 });
