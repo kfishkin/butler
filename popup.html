@@ -14,14 +14,20 @@
         background-color: #DDD;
         width:300px;
       }
+      span.version_info {
+        font-size: x-small;
+        float: right;
+      }
     </style>
     <script src="popup.js"></script>
   </head>
   <body>
     The message for the reply:
     <br/>
-    <input type="text" id="reply_text" value="Thanks for the input, but this should be an answer, not a comment." />
+    <input type="text" id="reply_text" size="50" value="Thanks for the input, but this should be an answer, not a comment." />
+    <br/>
     <button id='invoke_butler'>Decorate comments</button>
+    <br/>
+    <span class='version_info'>V1.0</span>
   </body>
 </html>
-
